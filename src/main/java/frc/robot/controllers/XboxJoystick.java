@@ -16,9 +16,9 @@ public class XboxJoystick extends Controller{
     XboxController xbox;
     private JoystickButton[] buttons;
 
-    public XboxJoystick(){
+    public XboxJoystick(int port){
         //Assigns the port the controller is connected to
-        xbox = new XboxController(RobotMap.xboxPort);
+        xbox = new XboxController(port);
         buttons = new JoystickButton[NUM_BUTTONS];
 
         /**instantiate buttons*/
