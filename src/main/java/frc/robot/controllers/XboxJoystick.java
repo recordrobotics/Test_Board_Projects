@@ -3,13 +3,12 @@ package frc.robot.controllers;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import frc.robot.RobotMap;
 
 
 /**
  * A class that turns the inputs from an Xbox controller into usable inputs for our code
  */
-public class XboxJoystick extends Controller{
+public class XboxJoystick {
     //How many usable button inputs there are on the controller
     private static final int NUM_BUTTONS = 10;
 
@@ -78,13 +77,6 @@ public class XboxJoystick extends Controller{
      */
     public double getXAxis() {
         return xbox.getLeftY();
-    }
-
-    /**
-     * Unnecessary function required by the superclass, does the same thing as getXAxis
-     */
-    public double getZ() {
-        return getXAxis();
     }
 
     /**
