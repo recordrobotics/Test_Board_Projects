@@ -34,7 +34,7 @@ public class XboxJoystick extends Controller{
     public JoystickButton getButton(String buttonName){
         buttonName.toUpperCase();
         int button;
-        switch (buttonName){
+        switch (buttonName) {
             case "X":
                 button = 3;
                 break;
@@ -73,25 +73,25 @@ public class XboxJoystick extends Controller{
     }
     
     /**
+     * This gets the other axis because things are broken, TODO: fix this
      * @return The X axis value of the left stick
-     * This gets the other axis because things are broken, needs to be fixed some day
      */
-    public double getXAxis (){
+    public double getXAxis() {
         return xbox.getLeftY();
     }
 
     /**
      * Unnecessary function required by the superclass, does the same thing as getXAxis
      */
-    public double getZ (){
+    public double getZ() {
         return getXAxis();
     }
 
     /**
+     * This gets the other axis because things are broken, TODO: fix this
      * @return The Y axis value of the left stick
-     * This gets the other axis because things are broken, needs to be fixed some day
      */
-    public double getYAxis (){
+    public double getYAxis() {
         return xbox.getLeftX();
     }
     /**
@@ -99,7 +99,7 @@ public class XboxJoystick extends Controller{
      * @param buttonName The common abbreviation for the button <p> Accepted inputs are X, Y, A, B, LB, RB, LS, RS, LT, RT, START, and BACK <p> Non-accepted inputs will return false
      * @return The boolean value of the button
      */
-    public boolean getButtonState (String buttonName){
+    public boolean getButtonState(String buttonName) {
         buttonName.toUpperCase();
 
         switch (buttonName){
@@ -232,7 +232,7 @@ public class XboxJoystick extends Controller{
         triggerName.toUpperCase();
         double cutoff = 0.5;    
 
-        switch (triggerName){
+        switch (triggerName) {
             case "LT":
                 return (int)(getLTAxis() + cutoff) == 1;
             case "RT":
