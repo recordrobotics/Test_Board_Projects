@@ -5,6 +5,8 @@ import edu.wpi.first.wpilibj.XboxController;
 public class LegacyControl implements IControlInput {
 
 	private XboxController _gamepad;
+	// Toggles for buttons - inversed when button is pressed
+	private boolean _btnX = false, _btnY = false;
 	
 	public LegacyControl(int port) {
 		_gamepad = new XboxController(port);
@@ -12,26 +14,22 @@ public class LegacyControl implements IControlInput {
 
 	@Override
 	public double getDriveLong() {
-		// TODO Auto-generated method stub
-		return 0;
+		return _gamepad.getLeftY();
 	}
 
 	@Override
 	public double getDriveLat() {
-		// TODO Auto-generated method stub
-		return 0;
+		return _gamepad.getLeftX();
 	}
 
 	@Override
 	public double getRotate() {
-		// TODO Auto-generated method stub
-		return 0;
+		return _gamepad.getRightX();
 	}
 
 	@Override
 	public double getClimb() {
-		// TODO Auto-generated method stub
-		return 0;
+		return _gamepad.getRightY();
 	}
 
 	@Override
@@ -56,8 +54,18 @@ public class LegacyControl implements IControlInput {
 
 	@Override
 	public FlywheelState getFlywheel() {
-		// TODO Auto-generated method stub
-		return null;
+		if (_gamepad.getXButtonPressed()) _btnX = !_btnX;
+		// We still want to check Y, to reset it
+		if (_gamepad.getYButtonPressed()) _btnY = !_btnY;
+		
+		// If X not pressed, clear Y
+		if (!_btnX) {
+			_btnY = false;
+			return FlywheelState.OFF;
+		}
+
+		// Otherwise Y determines the state
+		return (_btnY) ? FlywheelState.HIGH : FlywheelState.LOW;
 	}
 
 	@Override

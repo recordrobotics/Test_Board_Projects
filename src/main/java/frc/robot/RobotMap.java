@@ -1,6 +1,16 @@
 package frc.robot;
 
+/**
+ * Hardware ports for computer and robot
+ */
 public class RobotMap {
-	public static int xboxPort1 = 0;
-	public static int xboxPort2 = 1;
+	
+	/**
+	 * Control ports (PC USB)
+	 */
+	public class Control {
+		// Gamepad port for LegacyControl scheme
+		public static final int LEGACY_GAMEPAD = 0;
+	}
+
 }
