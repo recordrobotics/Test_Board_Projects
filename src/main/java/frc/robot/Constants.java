@@ -2,7 +2,7 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-package frc.robot;
+package constants;
 
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
@@ -15,4 +15,35 @@ package frc.robot;
 /**
  * TODO: PROGRAMMER NOTE: organize constants alphabetically, first by file name then by variable name
  */
-public final class Constants {}
+public final class Constants {
+	// current controller scheme
+	public static final ControllerScheme controllerScheme = ControllerScheme.TWO_XBOX_CONTROLLERS;
+	
+	
+	
+	// function called at the init of the robot to set constants based on current scheme
+	public static void setControllerConstants() {
+		switch (controllerScheme) {
+			case TWO_XBOX_CONTROLLERS:
+				x2ControllerConstants();
+				break;
+			case ONE_XBOX_CONTROLLER:
+				x1ControllerConstants();
+				break;
+			default:
+				break;
+		}
+	}
+	/**
+	 * set constants for 2 xbox controller scheme
+	 */
+	private static void x2ControllerConstants() {
+		
+	}
+	/**
+	 * set constants for 1 xbox controller scheme
+	 */
+	private static void x1ControllerConstants() {
+		
+	}
+}
