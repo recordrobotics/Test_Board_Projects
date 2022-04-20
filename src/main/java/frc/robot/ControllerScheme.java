@@ -1,4 +1,4 @@
-package frc.robot;
+package constants;
 
 public enum ControllerScheme {
 	TWO_XBOX_CONTROLLERS,
