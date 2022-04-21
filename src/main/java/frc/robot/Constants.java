@@ -15,7 +15,4 @@ package frc.robot;
 /**
  * TODO: PROGRAMMER NOTE: organize constants alphabetically, first by file name then by variable name
  */
-public final class Constants {
-	// for Controller files
-	public static final double TRIGGER_THRESHOLD = 0.25;
-}
+public final class Constants {}

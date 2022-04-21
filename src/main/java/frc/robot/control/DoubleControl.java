@@ -1,9 +1,10 @@
 package frc.robot.control;
 
 import edu.wpi.first.wpilibj.XboxController;
-import frc.robot.Constants;
 
 public class DoubleControl implements IControlInput {
+
+	private static final double TRIGGER_THRESHOLD = 0.25;
 
 	private XboxController _gamepad1;
 	private XboxController _gamepad2;
@@ -38,8 +39,8 @@ public class DoubleControl implements IControlInput {
 	@Override
 	public double getAcqSpin() {
 		// Forward mimics button-like behavior
-		boolean forward = _gamepad1.getLeftTriggerAxis() > Constants.TRIGGER_THRESHOLD
-			|| _gamepad1.getRightTriggerAxis() > Constants.TRIGGER_THRESHOLD;
+		boolean forward = _gamepad1.getLeftTriggerAxis() > TRIGGER_THRESHOLD
+			|| _gamepad1.getRightTriggerAxis() > TRIGGER_THRESHOLD;
 		boolean backward = _gamepad1.getLeftBumper() || _gamepad1.getRightBumper();
 
 		// Forward takes precedence
@@ -51,8 +52,8 @@ public class DoubleControl implements IControlInput {
 	@Override
 	public double getAcqTilt() {
 		// Out mimics button-like behavior
-		boolean out = _gamepad2.getLeftTriggerAxis() > Constants.TRIGGER_THRESHOLD
-			|| _gamepad2.getRightTriggerAxis() > Constants.TRIGGER_THRESHOLD;
+		boolean out = _gamepad2.getLeftTriggerAxis() > TRIGGER_THRESHOLD
+			|| _gamepad2.getRightTriggerAxis() > TRIGGER_THRESHOLD;
 		boolean in = _gamepad2.getLeftBumper() || _gamepad2.getRightBumper();
 
 		// Out takes precedence
