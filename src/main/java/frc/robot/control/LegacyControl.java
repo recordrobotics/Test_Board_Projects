@@ -1,10 +1,10 @@
 package frc.robot.control;
 
 import edu.wpi.first.wpilibj.XboxController;
+import frc.robot.Constants;
 
 public class LegacyControl implements IControlInput {
 
-	private static final double TRIGGER_THRESHOLD = 0.25;
 
 	private XboxController _gamepad;
 	// Toggles for buttons - inversed when button is pressed
@@ -37,7 +37,7 @@ public class LegacyControl implements IControlInput {
 	@Override
 	public double getAcqSpin() {
 		// Forward mimics button-like behavior
-		boolean forward = _gamepad.getLeftTriggerAxis() > TRIGGER_THRESHOLD;
+		boolean forward = _gamepad.getLeftTriggerAxis() > Constants.TRIGGER_THRESHOLD;
 		boolean backward = _gamepad.getLeftBumper();
 
 		// Forward takes precedence
@@ -49,7 +49,7 @@ public class LegacyControl implements IControlInput {
 	@Override
 	public double getAcqTilt() {
 		// Out mimics button-like behavior
-		boolean out = _gamepad.getRightTriggerAxis() > TRIGGER_THRESHOLD;
+		boolean out = _gamepad.getRightTriggerAxis() > Constants.TRIGGER_THRESHOLD;
 		boolean in = _gamepad.getRightBumper();
 
 		// Out takes precedence
