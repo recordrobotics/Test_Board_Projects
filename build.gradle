@@ -1,5 +1,6 @@
 plugins {
 	id "java"
+	id "pmd"
 	id "edu.wpi.first.GradleRIO" version "2022.2.1"
 }
 
@@ -7,6 +8,14 @@ sourceCompatibility = JavaVersion.VERSION_11
 targetCompatibility = JavaVersion.VERSION_11
 
 def ROBOT_MAIN_CLASS = "frc.robot.Main"
+
+// PMD linter
+pmd {
+	consoleOutput = true
+	ignoreFailures = false
+	ruleSetFiles = files("pmd.xml")
+	ruleSets = []
+}
 
 // Define my targets (RoboRIO) and artifacts (deployable files)
 // This is added by GradleRIO's backing project DeployUtils.

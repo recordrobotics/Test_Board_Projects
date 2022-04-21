@@ -11,7 +11,7 @@ public interface IControlInput {
 	 * 	LOW - low target shot
 	 * 	HIGH - high target shot
 	 */
-	public enum FlywheelState {
+	enum FlywheelState {
 		OFF,
 		LOW,
 		HIGH
@@ -21,48 +21,48 @@ public interface IControlInput {
 	 * Logitudinal drive input (forward & backward) value
 	 * @return [-1, 0) - backward; (0, 1] - forward
 	 */
-	public double getDriveLong();
+	double getDriveLong();
 
 	/**
 	 * Latitudinal drive input (left & right) value
 	 * @return [-1, 0) - left; (0, 1] - right
 	 */
-	public double getDriveLat();
+	double getDriveLat();
 
 	/**
 	 * Rotator input value
 	 * @return [-1, 0) - backward; (0, 1] - forward
 	 */
-	public double getRotate();
+	double getRotate();
 
 	/**
 	 * Climber input value
 	 * @return [-1, 0) - down; (0, 1] - up
 	 */
-	public double getClimb();
+	double getClimb();
 
 	/**
 	 * Acquisition spin input value
 	 * @return [-1, 0) - backward; (0, 1] - forward
 	 */
-	public double getAcqSpin();
+	double getAcqSpin();
 
 	/**
 	 * Acquisition tilt input value
 	 * @return [-1, 0) - in; (0, 1] - out
 	 */
-	public double getAcqTilt();
+	double getAcqTilt();
 
 	/**
 	 * Flywheel requested state
 	 * @return OFF - off, LOW - low speed, HIGH - high speed
 	 */
-	public FlywheelState getFlywheel();
+	FlywheelState getFlywheel();
 
 	/**
 	 * Servo input
 	 * @return false - servos down; true - servos up
 	 */
-	public boolean getServos();
+	boolean getServos();
 
 }

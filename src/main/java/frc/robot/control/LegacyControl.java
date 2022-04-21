@@ -8,7 +8,8 @@ public class LegacyControl implements IControlInput {
 
 	private XboxController _gamepad;
 	// Toggles for buttons - inversed when button is pressed
-	private boolean _btnX = false, _btnY = false;
+	private boolean _btnX;
+	private boolean _btnY;
 	
 	public LegacyControl(int port) {
 		_gamepad = new XboxController(port);
@@ -71,7 +72,7 @@ public class LegacyControl implements IControlInput {
 		}
 
 		// Otherwise Y determines the state
-		return (_btnY) ? FlywheelState.HIGH : FlywheelState.LOW;
+		return _btnY ? FlywheelState.HIGH : FlywheelState.LOW;
 	}
 
 	@Override

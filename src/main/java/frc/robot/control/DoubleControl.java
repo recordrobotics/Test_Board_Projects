@@ -9,7 +9,8 @@ public class DoubleControl implements IControlInput {
 	private XboxController _gamepad1;
 	private XboxController _gamepad2;
 	// Toggles for buttons on G2 - inversed when button is pressed
-	private boolean _btnX = false, _btnY = false;
+	private boolean _btnX;
+	private boolean _btnY;
 	
 	public DoubleControl(int port1, int port2) {
 		_gamepad1 = new XboxController(port1);
@@ -75,7 +76,7 @@ public class DoubleControl implements IControlInput {
 		}
 
 		// Otherwise Y determines the state
-		return (_btnY) ? FlywheelState.HIGH : FlywheelState.LOW;
+		return _btnY ? FlywheelState.HIGH : FlywheelState.LOW;
 	}
 
 	@Override

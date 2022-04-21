@@ -18,6 +18,7 @@ public class RobotContainer {
 	private ExampleSubsystem _exampleSubsystem = new ExampleSubsystem();
 
 	// Control scheme
+	@SuppressWarnings({"unused", "PMD.SingularField"})
 	private IControlInput _controlInput;
 
 	// Autonomous command
