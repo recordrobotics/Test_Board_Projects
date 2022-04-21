@@ -11,7 +11,7 @@ public class DoubleControl implements IControlInput {
 	// Toggles for buttons on G2 - inversed when button is pressed
 	private boolean _btnX;
 	private boolean _btnY;
-	
+
 	public DoubleControl(int port1, int port2) {
 		_gamepad1 = new XboxController(port1);
 		_gamepad2 = new XboxController(port2);
@@ -41,12 +41,14 @@ public class DoubleControl implements IControlInput {
 	public double getAcqSpin() {
 		// Forward mimics button-like behavior
 		boolean forward = _gamepad1.getLeftTriggerAxis() > TRIGGER_THRESHOLD
-			|| _gamepad1.getRightTriggerAxis() > TRIGGER_THRESHOLD;
+				|| _gamepad1.getRightTriggerAxis() > TRIGGER_THRESHOLD;
 		boolean backward = _gamepad1.getLeftBumper() || _gamepad1.getRightBumper();
 
 		// Forward takes precedence
-		if (forward) return 1;
-		else if (backward) return -1;
+		if (forward)
+			return 1;
+		else if (backward)
+			return -1;
 		return 0;
 	}
 
@@ -54,21 +56,25 @@ public class DoubleControl implements IControlInput {
 	public double getAcqTilt() {
 		// Out mimics button-like behavior
 		boolean out = _gamepad2.getLeftTriggerAxis() > TRIGGER_THRESHOLD
-			|| _gamepad2.getRightTriggerAxis() > TRIGGER_THRESHOLD;
+				|| _gamepad2.getRightTriggerAxis() > TRIGGER_THRESHOLD;
 		boolean in = _gamepad2.getLeftBumper() || _gamepad2.getRightBumper();
 
 		// Out takes precedence
-		if (out) return 1;
-		else if (in) return -1;
+		if (out)
+			return 1;
+		else if (in)
+			return -1;
 		return 0;
 	}
 
 	@Override
 	public FlywheelState getFlywheel() {
-		if (_gamepad2.getXButtonPressed()) _btnX = !_btnX;
+		if (_gamepad2.getXButtonPressed())
+			_btnX = !_btnX;
 		// We still want to check Y, to reset it
-		if (_gamepad2.getYButtonPressed()) _btnY = !_btnY;
-		
+		if (_gamepad2.getYButtonPressed())
+			_btnY = !_btnY;
+
 		// If X not pressed, clear Y
 		if (!_btnX) {
 			_btnY = false;

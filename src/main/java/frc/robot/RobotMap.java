@@ -4,7 +4,7 @@ package frc.robot;
  * Hardware ports for computer and robot
  */
 public class RobotMap {
-	
+
 	/**
 	 * Control ports (PC USB)
 	 */

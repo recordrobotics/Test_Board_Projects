@@ -10,7 +10,7 @@ public class LegacyControl implements IControlInput {
 	// Toggles for buttons - inversed when button is pressed
 	private boolean _btnX;
 	private boolean _btnY;
-	
+
 	public LegacyControl(int port) {
 		_gamepad = new XboxController(port);
 	}
@@ -42,8 +42,10 @@ public class LegacyControl implements IControlInput {
 		boolean backward = _gamepad.getLeftBumper();
 
 		// Forward takes precedence
-		if (forward) return 1;
-		else if (backward) return -1;
+		if (forward)
+			return 1;
+		else if (backward)
+			return -1;
 		return 0;
 	}
 
@@ -54,17 +56,21 @@ public class LegacyControl implements IControlInput {
 		boolean in = _gamepad.getRightBumper();
 
 		// Out takes precedence
-		if (out) return 1;
-		else if (in) return -1;
+		if (out)
+			return 1;
+		else if (in)
+			return -1;
 		return 0;
 	}
 
 	@Override
 	public FlywheelState getFlywheel() {
-		if (_gamepad.getXButtonPressed()) _btnX = !_btnX;
+		if (_gamepad.getXButtonPressed())
+			_btnX = !_btnX;
 		// We still want to check Y, to reset it
-		if (_gamepad.getYButtonPressed()) _btnY = !_btnY;
-		
+		if (_gamepad.getYButtonPressed())
+			_btnY = !_btnY;
+
 		// If X not pressed, clear Y
 		if (!_btnX) {
 			_btnY = false;
@@ -79,5 +85,5 @@ public class LegacyControl implements IControlInput {
 	public boolean getServos() {
 		return _gamepad.getAButton();
 	}
-	
+
 }
