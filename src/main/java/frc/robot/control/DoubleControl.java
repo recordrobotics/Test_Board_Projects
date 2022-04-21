@@ -36,7 +36,7 @@ public class DoubleControl implements IControlInput {
 
 	@Override
 	public double getAcqSpin() {
-		double forward = _gamepad1.getLeftTriggerAxis() + _gamepad1.getRightTriggerAxis();
+		double forward = (_gamepad1.getLeftTriggerAxis() + _gamepad1.getRightTriggerAxis()) / 2;
 		// Uses a button, so map to -1
 		double backward = (_gamepad1.getLeftBumper() || _gamepad1.getRightBumper()) ? -1 : 0;
 
@@ -46,7 +46,7 @@ public class DoubleControl implements IControlInput {
 
 	@Override
 	public double getAcqTilt() {
-		double out = _gamepad2.getLeftTriggerAxis() + _gamepad2.getRightTriggerAxis();
+		double out = (_gamepad2.getLeftTriggerAxis() + _gamepad2.getRightTriggerAxis()) / 2;
 		// Uses a button, so map to -1
 		double in = (_gamepad2.getLeftBumper() || _gamepad2.getRightBumper()) ? -1 : 0;
 
