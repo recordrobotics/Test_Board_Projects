@@ -4,6 +4,8 @@ import edu.wpi.first.wpilibj.XboxController;
 
 public class DoubleControl implements IControlInput {
 
+	private static final double TRIGGER_THRESHOLD = 0.25;
+
 	private XboxController _gamepad1;
 	private XboxController _gamepad2;
 	// Toggles for buttons on G2 - inversed when button is pressed
@@ -36,22 +38,28 @@ public class DoubleControl implements IControlInput {
 
 	@Override
 	public double getAcqSpin() {
-		double forward = (_gamepad1.getLeftTriggerAxis() + _gamepad1.getRightTriggerAxis()) / 2;
-		// Uses a button, so map to -1
-		double backward = (_gamepad1.getLeftBumper() || _gamepad1.getRightBumper()) ? -1 : 0;
+		// Forward mimics button-like behavior
+		boolean forward = _gamepad1.getLeftTriggerAxis() > TRIGGER_THRESHOLD
+			|| _gamepad1.getRightTriggerAxis() > TRIGGER_THRESHOLD;
+		boolean backward = _gamepad1.getLeftBumper() || _gamepad1.getRightBumper();
 
 		// Forward takes precedence
-		return (forward > 0) ? forward : backward;
+		if (forward) return 1;
+		else if (backward) return -1;
+		return 0;
 	}
 
 	@Override
 	public double getAcqTilt() {
-		double out = (_gamepad2.getLeftTriggerAxis() + _gamepad2.getRightTriggerAxis()) / 2;
-		// Uses a button, so map to -1
-		double in = (_gamepad2.getLeftBumper() || _gamepad2.getRightBumper()) ? -1 : 0;
+		// Out mimics button-like behavior
+		boolean out = _gamepad2.getLeftTriggerAxis() > TRIGGER_THRESHOLD
+			|| _gamepad2.getRightTriggerAxis() > TRIGGER_THRESHOLD;
+		boolean in = _gamepad2.getLeftBumper() || _gamepad2.getRightBumper();
 
 		// Out takes precedence
-		return (out > 0) ? out : in;
+		if (out) return 1;
+		else if (in) return -1;
+		return 0;
 	}
 
 	@Override

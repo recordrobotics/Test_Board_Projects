@@ -4,6 +4,8 @@ import edu.wpi.first.wpilibj.XboxController;
 
 public class LegacyControl implements IControlInput {
 
+	private static final double TRIGGER_THRESHOLD = 0.25;
+
 	private XboxController _gamepad;
 	// Toggles for buttons - inversed when button is pressed
 	private boolean _btnX = false, _btnY = false;
@@ -34,22 +36,26 @@ public class LegacyControl implements IControlInput {
 
 	@Override
 	public double getAcqSpin() {
-		double forward = _gamepad.getLeftTriggerAxis();
-		// Uses a button, so map to -1
-		double backward = _gamepad.getLeftBumper() ? -1 : 0;
+		// Forward mimics button-like behavior
+		boolean forward = _gamepad.getLeftTriggerAxis() > TRIGGER_THRESHOLD;
+		boolean backward = _gamepad.getLeftBumper();
 
 		// Forward takes precedence
-		return (forward > 0) ? forward : backward;
+		if (forward) return 1;
+		else if (backward) return -1;
+		return 0;
 	}
 
 	@Override
 	public double getAcqTilt() {
-		double out = _gamepad.getRightTriggerAxis();
-		// Uses a button, so map to -1
-		double in = _gamepad.getRightBumper() ? -1 : 0;
+		// Out mimics button-like behavior
+		boolean out = _gamepad.getRightTriggerAxis() > TRIGGER_THRESHOLD;
+		boolean in = _gamepad.getRightBumper();
 
 		// Out takes precedence
-		return (out > 0) ? out : in;
+		if (out) return 1;
+		else if (in) return -1;
+		return 0;
 	}
 
 	@Override
