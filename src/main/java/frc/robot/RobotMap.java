@@ -5,6 +5,13 @@ package frc.robot;
  */
 public class RobotMap {
 
+	//Acquisition Motor Ports
+	public static final int acqTiltiLimitSwitch = 2;
+	public static final int acqSpinMotorPort = 7;
+	public static final int ballChannelMotorPort = 8;
+	public static final int acqTiltMotorPort = 9;
+
+
 	/**
 	 * Control ports (PC USB)
 	 */
