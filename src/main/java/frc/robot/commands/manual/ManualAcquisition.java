@@ -5,10 +5,11 @@ import frc.robot.control.IControlInput;
 import frc.robot.subsystems.Acquisition;
 
 public class ManualAcquisition extends CommandBase {
-	// FIXME: set fields to the proper value
 	private Acquisition _acquisition;
 	private IControlInput _controls;
-	private final int TILT_SPEED = 0, SPIN_SPEED = 0;
+	// FIXME: set fields to the proper value
+	private static final int SPIN_SPEED = 0;
+	private static final int TILT_SPEED = 0;
 
 	public ManualAcquisition(Acquisition _acq, IControlInput _controlInput) {
 		_acquisition = _acq;

@@ -9,10 +9,10 @@ import frc.robot.RobotMap;
 
 public class Acquisition extends SubsystemBase {
 	// motor and limit switch variables
-	private CANSparkMax _spinMotor = new CANSparkMax(RobotMap.acqSpinMotorPort, MotorType.kBrushless);
-    private CANSparkMax _tiltMotor = new CANSparkMax(RobotMap.acqTiltMotorPort, MotorType.kBrushed);
-	private CANSparkMax _ballChannelMotor = new CANSparkMax(RobotMap.ballChannelMotorPort, MotorType.kBrushless);
-	private DigitalInput _tiltLimitSwitch = new DigitalInput(RobotMap.acqTiltiLimitSwitch);
+	private CANSparkMax _spinMotor = new CANSparkMax(RobotMap.Acquisition.SPIN_MOTOR_PORT, MotorType.kBrushless);
+	private CANSparkMax _tiltMotor = new CANSparkMax(RobotMap.Acquisition.TILT_MOTOR_PORT, MotorType.kBrushed);
+	private CANSparkMax _ballChannelMotor = new CANSparkMax(RobotMap.Acquisition.BALL_CHANNEL_MOTOR_PORT, MotorType.kBrushless);
+	private DigitalInput _tiltLimitSwitch = new DigitalInput(RobotMap.Acquisition.LIMIT_SWITCH);
 	// variable stating the current tilt state of the acquisition - only has 'up' and 'down' values
 	private String _tiltState = "up";
 
@@ -27,7 +27,7 @@ public class Acquisition extends SubsystemBase {
 	 * @return true if up, false if down
 	 */
 	public boolean getTiltState() {
-		return _tiltState.equals("up");
+		return "up".equals(_tiltState);
 	}
 
 	/**
@@ -53,11 +53,11 @@ public class Acquisition extends SubsystemBase {
 	 * @param speed speed of motor
 	 */
 	public void tiltAcquisition(double speed) {
-		if ((speed < 0 && _tiltLimitSwitch.get()) || speed > 0 ) {
-            _tiltMotor.set(speed);
-        } else {
-            _tiltMotor.set(0);
-        }
+		if (speed < 0 && _tiltLimitSwitch.get() || speed > 0 ) {
+			_tiltMotor.set(speed);
+		} else {
+			_tiltMotor.set(0);
+		}
 	}
 
 	/**
