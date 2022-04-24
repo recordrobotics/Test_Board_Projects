@@ -1,11 +1,12 @@
-package frc.robot.subsystems;
+package org.recordrobotics.munchkin.subsystems;
 
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+import org.recordrobotics.munchkin.RobotMap;
+
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.RobotMap;
 
 public class Acquisition extends SubsystemBase {
 	// motor and limit switch variables

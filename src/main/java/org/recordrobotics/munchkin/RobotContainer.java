@@ -2,14 +2,15 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-package frc.robot;
+package org.recordrobotics.munchkin;
 
-import frc.robot.commands.ExampleCommand;
-import frc.robot.commands.manual.ManualAcquisition;
-import frc.robot.control.IControlInput;
-import frc.robot.control.LegacyControl;
-import frc.robot.subsystems.Acquisition;
-import frc.robot.subsystems.ExampleSubsystem;
+import org.recordrobotics.munchkin.commands.ExampleCommand;
+import org.recordrobotics.munchkin.control.IControlInput;
+import org.recordrobotics.munchkin.control.LegacyControl;
+import org.recordrobotics.munchkin.subsystems.Acquisition;
+import org.recordrobotics.munchkin.subsystems.ExampleSubsystem;
+import org.recordrobotics.munchkin.commands.manual.ManualAcquisition;
+
 import edu.wpi.first.wpilibj2.command.Command;
 
 /**

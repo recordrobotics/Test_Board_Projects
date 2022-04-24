@@ -1,8 +1,9 @@
-package frc.robot.commands.manual;
+package org.recordrobotics.munchkin.commands.manual;
+
+import org.recordrobotics.munchkin.control.IControlInput;
+import org.recordrobotics.munchkin.subsystems.Acquisition;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.control.IControlInput;
-import frc.robot.subsystems.Acquisition;
 
 public class ManualAcquisition extends CommandBase {
 	private Acquisition _acquisition;
