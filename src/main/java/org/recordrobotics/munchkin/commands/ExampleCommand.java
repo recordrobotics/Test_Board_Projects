@@ -5,7 +5,6 @@
 package org.recordrobotics.munchkin.commands;
 
 import org.recordrobotics.munchkin.subsystems.ExampleSubsystem;
-
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 /** An example command that uses an example subsystem. */
