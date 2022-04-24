@@ -13,8 +13,6 @@ public class Acquisition extends SubsystemBase {
 	private CANSparkMax _tiltMotor = new CANSparkMax(RobotMap.Acquisition.TILT_MOTOR_PORT, MotorType.kBrushed);
 	private CANSparkMax _ballChannelMotor = new CANSparkMax(RobotMap.Acquisition.BALL_CHANNEL_MOTOR_PORT, MotorType.kBrushless);
 	private DigitalInput _tiltLimitSwitch = new DigitalInput(RobotMap.Acquisition.LIMIT_SWITCH);
-	// variable stating the current tilt state of the acquisition - only has 'up' and 'down' values
-	private boolean _tiltState = true;
 	// constant for ball channel motor speed
 	private static final double BALL_CHANNEL_SPEED_MULTIPLIER = -5.0 / 3;
 
@@ -29,15 +27,7 @@ public class Acquisition extends SubsystemBase {
 	 * @return true if up, false if down
 	 */
 	public boolean getTiltState() {
-		return _tiltState;
-	}
-
-	/**
-	 * sets a new value for _tiltState
-	 * @param newState the value to set _tiltState to
-	 */
-	public void setTiltState(boolean newState) {
-		_tiltState = newState;
+		return !_tiltLimitSwitch.get();
 	}
 
 	/**
@@ -59,14 +49,6 @@ public class Acquisition extends SubsystemBase {
 		} else {
 			_tiltMotor.set(0);
 		}
-	}
-
-	/**
-	 * returns if the limit switch has been activated (and the acquisition can't tilt farther down)
-	 * @return the value of the limit switch (true is not pressed, false is pressed)
-	 */
-	public boolean getTiltLimit() {
-		return _tiltLimitSwitch.get();
 	}
 
 	/**
