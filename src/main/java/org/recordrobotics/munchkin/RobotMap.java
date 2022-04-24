@@ -13,4 +13,14 @@ public class RobotMap {
 		public static final int LEGACY_GAMEPAD = 0;
 	}
 
+	/**
+	 * Acquisition Motor ports (CAN)
+	 */
+	public class Acquisition {
+		// limit switch is PWN port
+		public static final int LIMIT_SWITCH = 2;
+		public static final int SPIN_MOTOR_PORT = 7;
+		public static final int BALL_CHANNEL_MOTOR_PORT = 8;
+		public static final int TILT_MOTOR_PORT = 9;
+	}
 }
