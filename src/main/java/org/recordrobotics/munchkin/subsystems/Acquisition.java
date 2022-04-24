@@ -14,8 +14,8 @@ public class Acquisition extends SubsystemBase {
 	private CANSparkMax _tiltMotor = new CANSparkMax(RobotMap.Acquisition.TILT_MOTOR_PORT, MotorType.kBrushed);
 	private CANSparkMax _ballChannelMotor = new CANSparkMax(RobotMap.Acquisition.BALL_CHANNEL_MOTOR_PORT, MotorType.kBrushless);
 	private DigitalInput _tiltLimitSwitch = new DigitalInput(RobotMap.Acquisition.LIMIT_SWITCH);
-	// constant for ball channel motor speed
-	private static final double BALL_CHANNEL_SPEED_MULTIPLIER = -5.0 / 3;
+	// constant for ball channel motor speed modifier
+	private static final double BALL_CHANNEL_MOD = -5.0 / 3;
 
 	public Acquisition() {
 		_spinMotor.set(0);
@@ -37,7 +37,7 @@ public class Acquisition extends SubsystemBase {
 	 */
 	public void spin(double speed) {
 		_spinMotor.set(speed);
-		_ballChannelMotor.set(speed * BALL_CHANNEL_SPEED_MULTIPLIER);
+		_ballChannelMotor.set(speed * BALL_CHANNEL_MOD);
 	}
 
 	/**
