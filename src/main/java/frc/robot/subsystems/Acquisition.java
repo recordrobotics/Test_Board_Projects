@@ -14,7 +14,9 @@ public class Acquisition extends SubsystemBase {
 	private CANSparkMax _ballChannelMotor = new CANSparkMax(RobotMap.Acquisition.BALL_CHANNEL_MOTOR_PORT, MotorType.kBrushless);
 	private DigitalInput _tiltLimitSwitch = new DigitalInput(RobotMap.Acquisition.LIMIT_SWITCH);
 	// variable stating the current tilt state of the acquisition - only has 'up' and 'down' values
-	private String _tiltState = "up";
+	private boolean _tiltState = true;
+	// constant for ball channel motor speed
+	private static final double BALL_CHANNEL_SPEED_MULTIPLIER = -5.0 / 3;
 
 	public Acquisition() {
 		_spinMotor.set(0);
@@ -27,15 +29,14 @@ public class Acquisition extends SubsystemBase {
 	 * @return true if up, false if down
 	 */
 	public boolean getTiltState() {
-		return "up".equals(_tiltState);
+		return _tiltState;
 	}
 
 	/**
 	 * sets a new value for _tiltState
 	 * @param newState the value to set _tiltState to
-	 * *PRECONDITION* newState only holds the value 'up' or 'down'
 	 */
-	public void setTiltState(String newState) {
+	public void setTiltState(boolean newState) {
 		_tiltState = newState;
 	}
 
@@ -43,16 +44,16 @@ public class Acquisition extends SubsystemBase {
 	 * spins spin motor at 'speed' speed and ball channel motor at '-5/3 * speed' speed
 	 * @param speed base value for speed calculations, always >0
 	 */
-	public void spinAcquisition(double speed) {
+	public void spin(double speed) {
 		_spinMotor.set(speed);
-		_ballChannelMotor.set(-speed * 5 / 3);
+		_ballChannelMotor.set(speed * BALL_CHANNEL_SPEED_MULTIPLIER);
 	}
 
 	/**
 	 * spins tilt motor at 'speed' speed if it's raising it or lowering it and hasn't hit the limit switch
 	 * @param speed speed of motor
 	 */
-	public void tiltAcquisition(double speed) {
+	public void tilt(double speed) {
 		if (speed < 0 && _tiltLimitSwitch.get() || speed > 0 ) {
 			_tiltMotor.set(speed);
 		} else {
@@ -62,7 +63,7 @@ public class Acquisition extends SubsystemBase {
 
 	/**
 	 * returns if the limit switch has been activated (and the acquisition can't tilt farther down)
-	 * @return the value of the limit switch (true is pressed, false is not pressed)
+	 * @return the value of the limit switch (true is not pressed, false is pressed)
 	 */
 	public boolean getTiltLimit() {
 		return _tiltLimitSwitch.get();
@@ -73,6 +74,6 @@ public class Acquisition extends SubsystemBase {
 	 * @return acquisition spinning (true = spinning, false = not spinning)
 	 */
 	public boolean getSpinState() {
-		return _spinMotor.get() > 0;
+		return _spinMotor.get() != 0;
 	}
 }

@@ -11,9 +11,9 @@ public class ManualAcquisition extends CommandBase {
 	private static final int SPIN_SPEED = 0;
 	private static final int TILT_SPEED = 0;
 
-	public ManualAcquisition(Acquisition _acq, IControlInput _controlInput) {
-		_acquisition = _acq;
-		_controls = _controlInput;
+	public ManualAcquisition(Acquisition acquisition, IControlInput controlInput) {
+		_acquisition = acquisition;
+		_controls = controlInput;
 		addRequirements(_acquisition);
 	}
 
@@ -21,25 +21,20 @@ public class ManualAcquisition extends CommandBase {
 	public void execute() {
 		// spin controls (if = intake balls, else if = expel balls,  else = stop motor)
 		if (_controls.getAcqSpin() > 0) {
-			_acquisition.spinAcquisition(SPIN_SPEED);
+			_acquisition.spin(SPIN_SPEED);
 		} else if (_controls.getAcqSpin() < 0) {
-			_acquisition.spinAcquisition(-SPIN_SPEED);
+			_acquisition.spin(-SPIN_SPEED);
 		} else {
-			_acquisition.spinAcquisition(0);
+			_acquisition.spin(0);
 		}
 
 		// tilt controls (if = tilt down, else if = tilt up,  else = stop motor)
 		if (_controls.getAcqTilt() > 0) {
-			_acquisition.tiltAcquisition(TILT_SPEED);
+			_acquisition.tilt(TILT_SPEED);
 		} else if (_controls.getAcqTilt() < 0) {
-			_acquisition.tiltAcquisition(-TILT_SPEED);
+			_acquisition.tilt(-TILT_SPEED);
 		} else {
-			_acquisition.tiltAcquisition(0);
+			_acquisition.tilt(0);
 		}
-	}
-
-	@Override
-	public boolean isFinished() {
-		return false;
 	}
 }

@@ -14,7 +14,7 @@ public class RobotMap {
 	}
 
 	/**
-	 * Acquisition Motor ports
+	 * Acquisition Motor ports (PWM)
 	 */
 	public class Acquisition {
 		public static final int LIMIT_SWITCH = 2;
