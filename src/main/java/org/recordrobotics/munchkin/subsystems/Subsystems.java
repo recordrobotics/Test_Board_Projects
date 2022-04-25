@@ -3,7 +3,9 @@ package org.recordrobotics.munchkin.subsystems;
 import org.recordrobotics.munchkin.Constants;
 
 // put static functions that are used by multiple subsystems here
-public abstract class Subsystems {
+public final class Subsystems {
+	// so that Subsystems can't be instantiated
+	private Subsystems() {}
 	/**
 	 * Checks a motor speed value against Constants.SPEED_LIMIT
 	 * @param speed speed value to check
