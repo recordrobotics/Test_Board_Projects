@@ -3,6 +3,7 @@ package org.recordrobotics.munchkin.subsystems;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+import org.recordrobotics.munchkin.Constants;
 import org.recordrobotics.munchkin.RobotMap;
 
 import edu.wpi.first.wpilibj.DigitalInput;
@@ -36,6 +37,9 @@ public class Acquisition extends SubsystemBase {
 	 * @param speed base value for speed calculations, always >0
 	 */
 	public void spin(double speed) {
+		if (speed > Constants.SPEED_LIMIT) {
+			speed = Constants.SPEED_LIMIT;
+		}
 		_spinMotor.set(speed);
 		_ballChannelMotor.set(speed * BALL_CHANNEL_MOD);
 	}
@@ -45,6 +49,9 @@ public class Acquisition extends SubsystemBase {
 	 * @param speed speed of motor
 	 */
 	public void tilt(double speed) {
+		if (speed > Constants.SPEED_LIMIT) {
+			speed = Constants.SPEED_LIMIT;
+		}
 		if (speed < 0 && _tiltLimitSwitch.get() || speed > 0 ) {
 			_tiltMotor.set(speed);
 		} else {
