@@ -11,7 +11,7 @@ public final class Subsystems {
 	 * @param speed speed value to check
 	 * @return speed to spin motor (positive or negative)
 	 */
-	public static double checkLimit(double speed) {
+	public static double limitSpeed(double speed) {
 		if (speed > 0) {
 			return Math.min(speed, Constants.SPEED_LIMIT);
 		} else {
