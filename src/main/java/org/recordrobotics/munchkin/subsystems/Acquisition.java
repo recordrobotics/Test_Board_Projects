@@ -38,10 +38,16 @@ public class Acquisition extends SubsystemBase {
 	 */
 	public void spin(double speed) {
 		if (speed > Constants.SPEED_LIMIT) {
-			speed = Constants.SPEED_LIMIT;
+			_spinMotor.set(Constants.SPEED_LIMIT);
+		} else {
+			_spinMotor.set(speed);
 		}
-		_spinMotor.set(speed);
-		_ballChannelMotor.set(speed * BALL_CHANNEL_MOD);
+		if (speed * BALL_CHANNEL_MOD > Constants.SPEED_LIMIT) {
+			_ballChannelMotor.set(Constants.SPEED_LIMIT);
+		}
+		else {
+			_ballChannelMotor.set(speed * BALL_CHANNEL_MOD);
+		}
 	}
 
 	/**
@@ -49,11 +55,12 @@ public class Acquisition extends SubsystemBase {
 	 * @param speed speed of motor
 	 */
 	public void tilt(double speed) {
-		if (speed > Constants.SPEED_LIMIT) {
-			speed = Constants.SPEED_LIMIT;
-		}
 		if (speed < 0 && _tiltLimitSwitch.get() || speed > 0 ) {
-			_tiltMotor.set(speed);
+			if (speed > Constants.SPEED_LIMIT) {
+				_spinMotor.set(Constants.SPEED_LIMIT);
+			} else {
+				_spinMotor.set(speed);
+			}
 		} else {
 			_tiltMotor.set(0);
 		}
