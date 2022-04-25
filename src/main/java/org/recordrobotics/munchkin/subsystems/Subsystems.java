@@ -15,7 +15,7 @@ public final class Subsystems {
 		if (speed > 0) {
 			return Math.min(speed, Constants.SPEED_LIMIT);
 		} else {
-			return -Math.min(speed, Constants.SPEED_LIMIT);
+			return Math.max(speed, -Constants.SPEED_LIMIT);
 		}
 	}
 }
