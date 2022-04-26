@@ -26,4 +26,13 @@ public class RobotMap {
 		public static final int BALL_CHANNEL_MOTOR_PORT = 8;
 		public static final int TILT_MOTOR_PORT = 9;
 	}
+
+	/**
+	 * Climber ports (CAN)
+	 */
+	public class Climbers {
+		// Ports for Climbers
+		public static final int LEFT_MOTOR_PORT = 10;
+		public static final int RIGHT_MOTOR_PORT = 6;
+	}
 }
