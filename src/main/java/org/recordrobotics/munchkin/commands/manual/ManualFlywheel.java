@@ -12,6 +12,8 @@ public class ManualFlywheel extends CommandBase {
 	private static final double HIGH_SPEED = 0.35;
 	private static final double LOW_SPEED = 0.22;
 	private static final double IDLE_SPEED = 0;
+	// used to reset servos
+	private boolean _servosUp = false;
 
 	public ManualFlywheel(Flywheel flywheel, IControlInput controlInput) {
 		_flywheel = flywheel;
@@ -25,7 +27,6 @@ public class ManualFlywheel extends CommandBase {
 		switch (_controls.getFlywheel()) {
 			case OFF:
 				_flywheel.spin(IDLE_SPEED);
-				_flywheel.resetServos();
 				return;
 			case LOW:
 				_flywheel.spin(LOW_SPEED);
@@ -36,6 +37,10 @@ public class ManualFlywheel extends CommandBase {
 		}
 		if (_controls.getServos()) {
 			_flywheel.shootServos();
+			_servosUp = true;
+		} else if (_servosUp) {
+			_flywheel.resetServos();
+			_servosUp = false;
 		}
 	}
 }

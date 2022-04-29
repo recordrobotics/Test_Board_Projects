@@ -26,7 +26,6 @@ public class Flywheel extends SubsystemBase {
 	 * resets motor and servos upon creation
 	 */
 	public Flywheel() {
-		_motor.enableVoltageCompensation(true);
 		_motor.setVoltage(11.5);
 		spin(0);
 	}
@@ -53,14 +52,6 @@ public class Flywheel extends SubsystemBase {
 	public void resetServos() {
 		_leftServo.set(LEFT_SERVO_RESET);
 		_rightServo.set(RIGHT_SERVO_RESET);
-	}
-
-	/**
-	 * not sure where this is used, but it was in the old code
-	 * @return flywheel voltage output
-	 */
-	public double getVoltage() {
-		return _motor.getMotorOutputVoltage();
 	}
 
 	/**
