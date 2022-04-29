@@ -6,7 +6,7 @@ package org.recordrobotics.munchkin;
 public class RobotMap {
 
 	/**
-	 * Acquisition Motor Ports
+	 * Acquisition ports
 	 */
 	public class Acquisition {
 		// DIO
@@ -45,7 +45,7 @@ public class RobotMap {
 		// DIO
 		public static final int BALL_DETECTOR_PORT = 3;
 
-		// PWN
+		// PWM
 		public static final int RIGHT_SERVO_PORT = 0;
 		public static final int LEFT_SERVO_PORT = 1;
 
