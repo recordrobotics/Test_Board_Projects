@@ -6,9 +6,8 @@ package org.recordrobotics.munchkin;
 
 import org.recordrobotics.munchkin.commands.ExampleCommand;
 import org.recordrobotics.munchkin.control.*;
-import org.recordrobotics.munchkin.subsystems.Acquisition;
-import org.recordrobotics.munchkin.subsystems.ExampleSubsystem;
-import org.recordrobotics.munchkin.commands.manual.ManualAcquisition;
+import org.recordrobotics.munchkin.subsystems.*;
+import org.recordrobotics.munchkin.commands.manual.*;
 
 import edu.wpi.first.wpilibj2.command.Command;
 
@@ -18,14 +17,25 @@ import edu.wpi.first.wpilibj2.command.Command;
 public class RobotContainer {
 	// Subsystems
 	private ExampleSubsystem _exampleSubsystem = new ExampleSubsystem();
-
-	// Control scheme
-	@SuppressWarnings({"unused", "PMD.SingularField"})
-	private IControlInput _controlInput;
+	// warnings to suppress
+	private static final String WARNING_1 = "unused";
+	private static final String WARNING_2 = "PMD.SingularField";
 
 	// Acquisition
-	@SuppressWarnings({"unused", "PMD.SingularField"})
+	@SuppressWarnings({WARNING_1, WARNING_2})
 	private Acquisition _acquisition;
+
+	// Climbers
+	@SuppressWarnings({WARNING_1, WARNING_2})
+	private Climbers _climbers;
+
+	// Control scheme
+	@SuppressWarnings({WARNING_1, WARNING_2})
+	private IControlInput _controlInput;
+
+	// Flywheel
+	@SuppressWarnings({WARNING_1, WARNING_2})
+	private Flywheel _flywheel;
 
 	// Autonomous command
 	private ExampleCommand _autoCommand = new ExampleCommand(_exampleSubsystem);
@@ -35,6 +45,10 @@ public class RobotContainer {
 		//_controlInput = new DoubleControl(RobotMap.Control.DOUBLE_GAMEPAD_1, RobotMap.Control.DOUBLE_GAMEPAD_2);
 		_acquisition = new Acquisition();
 		_acquisition.setDefaultCommand(new ManualAcquisition(_acquisition, _controlInput));
+		_climbers = new Climbers();
+		_climbers.setDefaultCommand(new ManualClimbers(_climbers, _controlInput));
+		_flywheel = new Flywheel();
+		_flywheel.setDefaultCommand(new ManualFlywheel(_flywheel, _controlInput));
 	}
 
 	public Command getAutonomousCommand() {
