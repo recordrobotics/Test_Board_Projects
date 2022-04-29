@@ -26,7 +26,7 @@ public class ManualFlywheel extends CommandBase {
 			case OFF:
 				_flywheel.spin(IDLE_SPEED);
 				_flywheel.resetServos();
-				break;
+				return;
 			case LOW:
 				_flywheel.spin(LOW_SPEED);
 				break;
@@ -34,7 +34,7 @@ public class ManualFlywheel extends CommandBase {
 				_flywheel.spin(HIGH_SPEED);
 				break;
 		}
-		if (_controls.getServos() && _controls.getFlywheel() != IControlInput.FlywheelState.OFF) {
+		if (_controls.getServos()) {
 			_flywheel.shootServos();
 		}
 	}
