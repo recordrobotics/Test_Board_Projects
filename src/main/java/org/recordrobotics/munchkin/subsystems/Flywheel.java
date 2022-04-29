@@ -12,23 +12,23 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 public class Flywheel extends SubsystemBase {
 	// constants related to servo positions
 	private static final double RIGHT_SERVO_SHOOT = 0.0;
-    private static final double LEFT_SERVO_SHOOT = 0.33;
-    private static final double RIGHT_SERVO_RESET = 0.33;
-    private static final double LEFT_SERVO_RESET = 0.0;
+	private static final double LEFT_SERVO_SHOOT = 0.33;
+	private static final double RIGHT_SERVO_RESET = 0.33;
+	private static final double LEFT_SERVO_RESET = 0.0;
 
 	// motor, servo, and limit switch variables
 	private WPI_TalonFX _motor = new WPI_TalonFX(RobotMap.Flywheel.MOTOR_PORT);
-    private Servo _leftServo = new Servo(RobotMap.Flywheel.LEFT_SERVO_PORT);
-    private Servo _rightServo = new Servo(RobotMap.Flywheel.RIGHT_SERVO_PORT);
-    private DigitalInput _ballDetector = new DigitalInput(RobotMap.Flywheel.BALL_DETECTOR_PORT);
+	private Servo _leftServo = new Servo(RobotMap.Flywheel.LEFT_SERVO_PORT);
+	private Servo _rightServo = new Servo(RobotMap.Flywheel.RIGHT_SERVO_PORT);
+	private DigitalInput _ballDetector = new DigitalInput(RobotMap.Flywheel.BALL_DETECTOR_PORT);
 
 	/**
 	 * resets motor and servos upon creation
 	 */
 	public Flywheel() {
 		_motor.enableVoltageCompensation(true);
-        _motor.setVoltage(11.5);
-        spin(0);
+		_motor.setVoltage(11.5);
+		spin(0);
 	}
 
 	/**
@@ -46,12 +46,12 @@ public class Flywheel extends SubsystemBase {
 		_leftServo.set(LEFT_SERVO_SHOOT);
 		_rightServo.set(RIGHT_SERVO_SHOOT);
 	}
-	
+
 	/**
 	 * puts the servos back into idle position
 	 */
 	public void resetServos() {
-        _leftServo.set(LEFT_SERVO_RESET);
+		_leftServo.set(LEFT_SERVO_RESET);
 		_rightServo.set(RIGHT_SERVO_RESET);
 	}
 
