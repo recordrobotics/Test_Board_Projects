@@ -26,7 +26,6 @@ public class Flywheel extends SubsystemBase {
 	 * resets motor and servos upon creation
 	 */
 	public Flywheel() {
-		_motor.setVoltage(11.5);
 		spin(0);
 	}
 
