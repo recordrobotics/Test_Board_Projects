@@ -9,8 +9,8 @@ public class ManualAcquisition extends CommandBase {
 	private Acquisition _acquisition;
 	private IControlInput _controls;
 	// FIXME: set fields to the proper value
-	private static final int SPIN_SPEED = 0;
-	private static final int TILT_SPEED = 0;
+	private static final double SPIN_SPEED = 0;
+	private static final double TILT_SPEED = 0;
 
 	public ManualAcquisition(Acquisition acquisition, IControlInput controlInput) {
 		_acquisition = acquisition;

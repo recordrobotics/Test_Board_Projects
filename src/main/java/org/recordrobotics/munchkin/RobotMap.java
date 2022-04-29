@@ -6,22 +6,13 @@ package org.recordrobotics.munchkin;
 public class RobotMap {
 
 	/**
-	 * Control ports (PC USB)
-	 */
-	public class Control {
-		// Gamepad port for LegacyControl scheme
-		public static final int LEGACY_GAMEPAD = 0;
-		// Gamepad ports for DoubleControl scheme
-		public static final int DOUBLE_GAMEPAD_1 = 0;
-		public static final int DOUBLE_GAMEPAD_2 = 1;
-	}
-
-	/**
-	 * Acquisition Motor ports (CAN)
+	 * Acquisition ports
 	 */
 	public class Acquisition {
-		// limit switch is PWN port
+		// DIO
 		public static final int LIMIT_SWITCH = 2;
+
+		// CAN
 		public static final int SPIN_MOTOR_PORT = 7;
 		public static final int BALL_CHANNEL_MOTOR_PORT = 8;
 		public static final int TILT_MOTOR_PORT = 9;
@@ -31,8 +22,34 @@ public class RobotMap {
 	 * Climber ports (CAN)
 	 */
 	public class Climbers {
-		// Ports for Climbers
 		public static final int LEFT_MOTOR_PORT = 10;
 		public static final int RIGHT_MOTOR_PORT = 6;
+	}
+
+	/**
+	 * Control ports (PC USB)
+	 */
+	public class Control {
+		// LegacyControl
+		public static final int LEGACY_GAMEPAD = 0;
+
+		// DoubleControl
+		public static final int DOUBLE_GAMEPAD_1 = 0;
+		public static final int DOUBLE_GAMEPAD_2 = 1;
+	}
+
+	/**
+	 * Climber ports
+	 */
+	public class Flywheel {
+		// DIO
+		public static final int BALL_DETECTOR_PORT = 3;
+
+		// PWM
+		public static final int RIGHT_SERVO_PORT = 0;
+		public static final int LEFT_SERVO_PORT = 1;
+
+		// CAN
+		public static final int MOTOR_PORT = 11;
 	}
 }
