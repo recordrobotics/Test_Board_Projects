@@ -34,7 +34,7 @@ public class Flywheel extends SubsystemBase {
 	 * @param speed speed to spin motor
 	 */
 	public void spin(double speed) {
-		_motor.set(ControlMode.PercentOutput, speed);
+		_motor.set(ControlMode.PercentOutput, Subsystems.limitSpeed(speed));
 	}
 
 	/**
