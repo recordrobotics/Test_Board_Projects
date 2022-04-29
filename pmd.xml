@@ -13,6 +13,7 @@
 
 	<!-- File excludes (temporary) -->
 	<exclude-pattern>.*/Robot.java</exclude-pattern>
+	<exclude-pattern>.*/RobotContainer.java</exclude-pattern>
 
 	<!-- Best Practices -->
 	<rule ref="category/java/bestpractices.xml"/>
