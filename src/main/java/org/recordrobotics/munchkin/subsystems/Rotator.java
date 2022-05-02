@@ -23,14 +23,6 @@ public class Rotator extends SubsystemBase {
 	}
 
 	/**
-	 * stops motors
-	 */
-	public void stop() {
-		_leftMotor.set(0);
-		_rightMotor.set(0);
-	}
-
-	/**
 	 * gets position from encoders
 	 * @return position
 	 */
@@ -56,7 +48,8 @@ public class Rotator extends SubsystemBase {
 			_leftMotor.set(Subsystems.limitSpeed(speed));
 			_rightMotor.set(Subsystems.limitSpeed(-speed));
 		} else {
-			stop();
+			_leftMotor.set(0);
+			_rightMotor.set(0);
 		}
 	}
 }
