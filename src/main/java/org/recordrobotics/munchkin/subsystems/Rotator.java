@@ -27,7 +27,7 @@ public class Rotator extends SubsystemBase {
 	 * @return position
 	 */
 	public double getPosition() {
-		// right encoder will be incrementing opposite to left encoder. because left motor spins in the same direction as the input, right encoder is subtracted.
+		// the motors spin in opposite directions, so one encoder is always positive and the other is negative
 		return (_leftEncoder.getPosition() - _rightEncoder.getPosition()) / 2;
 	}
 
