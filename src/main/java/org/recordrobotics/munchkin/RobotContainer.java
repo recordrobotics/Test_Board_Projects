@@ -29,6 +29,7 @@ public class RobotContainer {
 
 	public RobotContainer() {
 		_controlInput = new LegacyControl(RobotMap.Control.LEGACY_GAMEPAD);
+
 		// _controlInput = new DoubleControl(RobotMap.Control.DOUBLE_GAMEPAD_1,
 		// 	RobotMap.Control.DOUBLE_GAMEPAD_2);
 		_acquisition = new Acquisition();
@@ -37,6 +38,8 @@ public class RobotContainer {
 		_climbers.setDefaultCommand(new ManualClimbers(_climbers, _controlInput));
 		_flywheel = new Flywheel();
 		_flywheel.setDefaultCommand(new ManualFlywheel(_flywheel, _controlInput));
+		_drivetrain = new DriveTrain();
+
 	}
 
 	public Command getAutonomousCommand() {

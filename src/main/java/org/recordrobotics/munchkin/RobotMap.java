@@ -66,4 +66,11 @@ public class RobotMap {
 		public static final int BWD_LIMIT_PORT = 1;
 
 	}
+	public class DriveBase {
+		public static final int LEFT_BACK_MOTOR_PORT = 2;
+		public static final int LEFT_FRONT_MOTOR_PORT = 1;
+		public static final int RIGHT_BACK_MOTOR_PORT = 4;
+		public static final int RIGHT_FRONT_MOTOR_PORT = 3;
+	}
+
 }
