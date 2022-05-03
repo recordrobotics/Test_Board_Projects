@@ -22,6 +22,7 @@ public class RobotContainer {
 	private Acquisition _acquisition;
 	private Climbers _climbers;
 	private Flywheel _flywheel;
+	private DriveTrain _drivetrain;
 
 	// Example stuff
 	private ExampleSubsystem _exampleSubsystem = new ExampleSubsystem();

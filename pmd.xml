@@ -51,6 +51,7 @@
 	<rule ref="category/java/design.xml">
 		<exclude name="LoosePackageCoupling"/>
 		<exclude name="ImmutableField"/>
+		<exclude name="LawOfDemeter"/>
 	</rule>
 
 	<!-- Documentation -->
