@@ -24,4 +24,9 @@ public class ManualRotator extends CommandBase {
 		}
 		_rotator.rotate(speed);
 	}
+
+	@Override
+	public void end(boolean interrupted) {
+		_rotator.rotate(0);
+	}
 }

@@ -20,4 +20,9 @@ public class ManualClimbers extends CommandBase {
 		// [-1, 0) = Climbers down, (0, 1] = Climbers extend, 0 = Stop
 		_climbers.move(_controls.getClimb());
 	}
+
+	@Override
+	public void end(boolean interrupted) {
+		_climbers.move(0);
+	}
 }

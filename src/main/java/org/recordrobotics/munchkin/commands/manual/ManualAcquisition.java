@@ -38,4 +38,10 @@ public class ManualAcquisition extends CommandBase {
 			_acquisition.tilt(0);
 		}
 	}
+
+	@Override
+	public void end(boolean interrupted) {
+		_acquisition.tilt(0);
+		_acquisition.spin(0);
+	}
 }
