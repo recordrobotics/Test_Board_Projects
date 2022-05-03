@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 public class ManualAcquisition extends CommandBase {
 	private Acquisition _acquisition;
 	private IControlInput _controls;
-	
+
 	private static final double SPIN_SPEED = -0.5;
 	private static final double TILT_SPEED = -0.5;
 
