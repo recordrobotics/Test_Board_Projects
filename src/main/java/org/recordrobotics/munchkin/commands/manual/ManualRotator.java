@@ -14,6 +14,7 @@ public class ManualRotator extends CommandBase {
 	public ManualRotator(Rotator rotator, IControlInput control) {
 		_rotator = rotator;
 		_controls = control;
+		addRequirements(_rotator);
 	}
 
 	@Override

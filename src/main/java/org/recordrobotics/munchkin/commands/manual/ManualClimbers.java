@@ -9,6 +9,8 @@ public class ManualClimbers extends CommandBase {
 	private Climbers _climbers;
 	private IControlInput _controls;
 
+	private static final double MIN_SPEED = 0.10;
+
 	public ManualClimbers(Climbers climber, IControlInput controlInput) {
 		_climbers = climber;
 		_controls = controlInput;
@@ -17,7 +19,15 @@ public class ManualClimbers extends CommandBase {
 
 	@Override
 	public void execute() {
-		// [-1, 0) = Climbers down, (0, 1] = Climbers extend, 0 = Stop
-		_climbers.move(_controls.getClimb());
+		double speed = _controls.getClimb();
+		if (Math.abs(speed) < MIN_SPEED) {
+			speed = 0;
+		}
+		_climbers.move(speed);
+	}
+
+	@Override
+	public void end(boolean interrupted) {
+		_climbers.move(0);
 	}
 }

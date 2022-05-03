@@ -44,4 +44,10 @@ public class ManualFlywheel extends CommandBase {
 			_servosUp = false;
 		}
 	}
+
+	@Override
+	public void end(boolean interrupted) {
+		_flywheel.spin(0);
+		_flywheel.resetServos();
+	}
 }
