@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 public class ManualClimbers extends CommandBase {
 	private Climbers _climbers;
 	private IControlInput _controls;
-	
+
 	private static final double MIN_SPEED = 0.10;
 
 	public ManualClimbers(Climbers climber, IControlInput controlInput) {
