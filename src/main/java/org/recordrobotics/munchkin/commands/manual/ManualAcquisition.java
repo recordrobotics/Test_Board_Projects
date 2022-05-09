@@ -13,6 +13,13 @@ public class ManualAcquisition extends CommandBase {
 	private static final double TILT_SPEED = -0.5;
 
 	public ManualAcquisition(Acquisition acquisition, IControlInput controlInput) {
+		if (acquisition == null) {
+			throw new IllegalArgumentException("Acquisition is null");
+		}
+		if (controlInput == null) {
+			throw new IllegalArgumentException("Control is null");
+		}
+
 		_acquisition = acquisition;
 		_controls = controlInput;
 		addRequirements(_acquisition);
