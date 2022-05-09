@@ -5,7 +5,6 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 
 import org.recordrobotics.munchkin.RobotMap;
 
-import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
@@ -20,7 +19,6 @@ public class Flywheel extends SubsystemBase {
 	private WPI_TalonFX _motor = new WPI_TalonFX(RobotMap.Flywheel.MOTOR_PORT);
 	private Servo _leftServo = new Servo(RobotMap.Flywheel.LEFT_SERVO_PORT);
 	private Servo _rightServo = new Servo(RobotMap.Flywheel.RIGHT_SERVO_PORT);
-	private DigitalInput _ballDetector = new DigitalInput(RobotMap.Flywheel.BALL_DETECTOR_PORT);
 
 	/**
 	 * resets motor and servos upon creation
@@ -51,13 +49,5 @@ public class Flywheel extends SubsystemBase {
 	public void resetServos() {
 		_leftServo.set(LEFT_SERVO_RESET);
 		_rightServo.set(RIGHT_SERVO_RESET);
-	}
-
-	/**
-	 * returns ball detector state
-	 * @return ball detector switch is active (true = active, false = not active)
-	 */
-	public boolean getBallDetector() {
-		return !_ballDetector.get();
 	}
 }

@@ -42,9 +42,6 @@ public class RobotMap {
 	 * Flywheel ports
 	 */
 	public class Flywheel {
-		// DIO
-		public static final int BALL_DETECTOR_PORT = 3;
-
 		// PWM
 		public static final int RIGHT_SERVO_PORT = 0;
 		public static final int LEFT_SERVO_PORT = 1;
@@ -66,11 +63,27 @@ public class RobotMap {
 		public static final int BWD_LIMIT_PORT = 1;
 
 	}
+	
+	/**
+	 * Drive Ports
+	 */
 	public class DriveBase {
+		// CAN
 		public static final int LEFT_BACK_MOTOR_PORT = 2;
 		public static final int LEFT_FRONT_MOTOR_PORT = 1;
 		public static final int RIGHT_BACK_MOTOR_PORT = 4;
 		public static final int RIGHT_FRONT_MOTOR_PORT = 3;
 	}
 
+	/**
+	 * Miscellaneous Sensor Ports
+	 */
+	public class Sensors {
+		// DIO
+		public static final int RANGE_FINDER_A_PING = 7;
+		public static final int RANGE_FINDER_A_ECHO = 6;
+		public static final int RANGE_FINDER_B_PING = 9;
+		public static final int RANGE_FINDER_B_ECHO = 8;
+		public static final int BALL_DETECTOR_PORT = 3;
+	}
 }
