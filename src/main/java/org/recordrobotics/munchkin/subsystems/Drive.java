@@ -13,23 +13,34 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-public class DriveTrain extends SubsystemBase {
-	private CANSparkMax[] _leftMotors = { new CANSparkMax(RobotMap.DriveBase.LEFT_FRONT_MOTOR_PORT, MotorType.kBrushless),
-									new CANSparkMax(RobotMap.DriveBase.LEFT_BACK_MOTOR_PORT, MotorType.kBrushless)};
-	private CANSparkMax[] _rightMotors = { new CANSparkMax(RobotMap.DriveBase.RIGHT_FRONT_MOTOR_PORT, MotorType.kBrushless),
-										new CANSparkMax(RobotMap.DriveBase.RIGHT_BACK_MOTOR_PORT, MotorType.kBrushless)};
+public class Drive extends SubsystemBase {
+	private CANSparkMax[] _leftMotors = {
+		new CANSparkMax(RobotMap.DriveBase.LEFT_FRONT_MOTOR_PORT, MotorType.kBrushless),
+		new CANSparkMax(RobotMap.DriveBase.LEFT_BACK_MOTOR_PORT, MotorType.kBrushless)
+	};
+	private CANSparkMax[] _rightMotors = {
+		new CANSparkMax(RobotMap.DriveBase.RIGHT_FRONT_MOTOR_PORT, MotorType.kBrushless),
+		new CANSparkMax(RobotMap.DriveBase.RIGHT_BACK_MOTOR_PORT, MotorType.kBrushless)
+	};
+
 	private MotorControllerGroup _leftDriveMotors = new MotorControllerGroup(_leftMotors);
 	private MotorControllerGroup _rightDriveMotors = new MotorControllerGroup(_rightMotors);
+
 	private DifferentialDrive _differentialDrive = new DifferentialDrive(_leftDriveMotors, _rightDriveMotors);
 
-	public DifferentialDrive getDifferentialDrive(){
-		return _differentialDrive;
-	}
-	public void stopMotors(){
+	public Drive() {
 		_leftDriveMotors.set(0);
 		_rightDriveMotors.set(0);
 	}
-	/** Creates a new ExampleSubsystem. */
-	@SuppressWarnings({"PMD.UnnecessaryConstructor", "PMD.UncommentedEmptyConstructor"})
-	public DriveTrain() {}
+
+	/**
+	 * Drive the robot
+	 */
+	public void move(double longSpeed, double latSpeed) {
+		_differentialDrive.arcadeDrive(
+			Subsystems.limitSpeed(longSpeed),
+			Subsystems.limitSpeed(latSpeed)
+		);
+	}
+
 }
