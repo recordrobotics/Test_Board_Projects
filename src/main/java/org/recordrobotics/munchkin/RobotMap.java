@@ -68,13 +68,11 @@ public class RobotMap {
 	 * Miscellaneous Sensor Ports
 	 */
 	public class Sensors {
-		// TODO: set port type
+		// DIO
 		public static final int RANGE_FINDER_A_PING = 7;
 		public static final int RANGE_FINDER_A_ECHO = 6;
 		public static final int RANGE_FINDER_B_PING = 9;
 		public static final int RANGE_FINDER_B_ECHO = 8;
-
-		// DIO
 		public static final int BALL_DETECTOR_PORT = 3;
 	}
 }
