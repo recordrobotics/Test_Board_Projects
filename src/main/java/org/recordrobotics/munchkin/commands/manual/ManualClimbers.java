@@ -12,6 +12,13 @@ public class ManualClimbers extends CommandBase {
 	private static final double MIN_SPEED = 0.10;
 
 	public ManualClimbers(Climbers climber, IControlInput controlInput) {
+		if (climber == null) {
+			throw new IllegalArgumentException("Climber is null");
+		}
+		if (controlInput == null) {
+			throw new IllegalArgumentException("Control is null");
+		}
+
 		_climbers = climber;
 		_controls = controlInput;
 		addRequirements(_climbers);

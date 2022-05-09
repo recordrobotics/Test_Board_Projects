@@ -12,6 +12,13 @@ public class ManualRotator extends CommandBase {
 	private static final double MIN_SPEED = 0.15;
 
 	public ManualRotator(Rotator rotator, IControlInput control) {
+		if (rotator == null) {
+			throw new IllegalArgumentException("Rotator is null");
+		}
+		if (control == null) {
+			throw new IllegalArgumentException("Control is null");
+		}
+
 		_rotator = rotator;
 		_controls = control;
 		addRequirements(_rotator);
