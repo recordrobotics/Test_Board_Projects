@@ -17,5 +17,4 @@ package org.recordrobotics.munchkin;
  */
 public final class Constants {
 	// maximum limit for motors to spin, used in all subsystems
-	public static final double SPEED_LIMIT = 0.85;
 }
