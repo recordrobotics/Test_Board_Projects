@@ -23,6 +23,7 @@ public class RobotContainer {
 	private Climbers _climbers;
 	private Flywheel _flywheel;
 	private Rotator _rotator;
+	private Drive _drive;
 
 	public RobotContainer() {
 		_controlInput = new LegacyControl(RobotMap.Control.LEGACY_GAMEPAD);
@@ -32,6 +33,7 @@ public class RobotContainer {
 		_climbers = new Climbers();
 		_flywheel = new Flywheel();
 		_rotator = new Rotator();
+		_drive = new Drive();
 	}
 
 	/**
@@ -42,7 +44,8 @@ public class RobotContainer {
 			new ManualAcquisition(_acquisition, _controlInput),
 			new ManualClimbers(_climbers, _controlInput),
 			new ManualFlywheel(_flywheel, _controlInput),
-			new ManualRotator(_rotator, _controlInput));
+			new ManualRotator(_rotator, _controlInput),
+			new ManualDrive(_drive, _controlInput));
 	}
 
 	/**
