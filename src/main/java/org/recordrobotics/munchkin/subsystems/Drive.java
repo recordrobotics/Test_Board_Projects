@@ -37,10 +37,8 @@ public class Drive extends SubsystemBase {
 	 * Drive the robot
 	 */
 	public void move(double longSpeed, double latSpeed) {
-		_differentialDrive.arcadeDrive(
-			Subsystems.limitSpeed(longSpeed),
-			Subsystems.limitSpeed(latSpeed)
-		);
+		_differentialDrive.arcadeDrive(Subsystems.limitSpeed(latSpeed),
+			Subsystems.limitSpeed(-longSpeed));
 	}
 
 }
