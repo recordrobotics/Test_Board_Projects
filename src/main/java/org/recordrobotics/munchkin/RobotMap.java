@@ -39,6 +39,16 @@ public class RobotMap {
 	}
 
 	/**
+	 * Drive Ports (CAN)
+	 */
+	public class DriveBase {
+		public static final int LEFT_BACK_MOTOR_PORT = 2;
+		public static final int LEFT_FRONT_MOTOR_PORT = 1;
+		public static final int RIGHT_BACK_MOTOR_PORT = 4;
+		public static final int RIGHT_FRONT_MOTOR_PORT = 3;
+	}
+
+	/**
 	 * Flywheel ports
 	 */
 	public class Flywheel {
@@ -62,17 +72,6 @@ public class RobotMap {
 		public static final int FWD_LIMIT_PORT = 0;
 		public static final int BWD_LIMIT_PORT = 1;
 
-	}
-
-	/**
-	 * Drive Ports
-	 */
-	public class DriveBase {
-		// CAN
-		public static final int LEFT_BACK_MOTOR_PORT = 2;
-		public static final int LEFT_FRONT_MOTOR_PORT = 1;
-		public static final int RIGHT_BACK_MOTOR_PORT = 4;
-		public static final int RIGHT_FRONT_MOTOR_PORT = 3;
 	}
 
 	/**

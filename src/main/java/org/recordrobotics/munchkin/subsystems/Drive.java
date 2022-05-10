@@ -14,29 +14,31 @@ import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Drive extends SubsystemBase {
-	private CANSparkMax[] _leftMotors = {
+
+	private MotorControllerGroup _leftMotors = new MotorControllerGroup(
 		new CANSparkMax(RobotMap.DriveBase.LEFT_FRONT_MOTOR_PORT, MotorType.kBrushless),
 		new CANSparkMax(RobotMap.DriveBase.LEFT_BACK_MOTOR_PORT, MotorType.kBrushless)
-	};
-	private CANSparkMax[] _rightMotors = {
+	);
+
+	private MotorControllerGroup _rightMotors = new MotorControllerGroup(
 		new CANSparkMax(RobotMap.DriveBase.RIGHT_FRONT_MOTOR_PORT, MotorType.kBrushless),
 		new CANSparkMax(RobotMap.DriveBase.RIGHT_BACK_MOTOR_PORT, MotorType.kBrushless)
-	};
+	);
 
-	private MotorControllerGroup _leftDriveMotors = new MotorControllerGroup(_leftMotors);
-	private MotorControllerGroup _rightDriveMotors = new MotorControllerGroup(_rightMotors);
-
-	private DifferentialDrive _differentialDrive = new DifferentialDrive(_leftDriveMotors, _rightDriveMotors);
+	private DifferentialDrive _differentialDrive = new DifferentialDrive(_leftMotors, _rightMotors);
 
 	public Drive() {
-		_leftDriveMotors.set(0);
-		_rightDriveMotors.set(0);
+		_leftMotors.set(0);
+		_rightMotors.set(0);
 	}
 
 	/**
 	 * Drive the robot
 	 */
 	public void move(double longSpeed, double latSpeed) {
+		// Arcade drive expects rotational inputs, while get translational
+		// inputs. Therefore the values must be switched around
+		// https://docs.wpilib.org/en/stable/docs/software/hardware-apis/motors/wpi-drive-classes.html
 		_differentialDrive.arcadeDrive(Subsystems.limitSpeed(latSpeed),
 			Subsystems.limitSpeed(-longSpeed));
 	}
