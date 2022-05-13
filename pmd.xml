@@ -11,9 +11,6 @@
         Ruleset
     </description>
 
-	<!-- File excludes (temporary) -->
-	<exclude-pattern>.*/Robot.java</exclude-pattern>
-
 	<!-- Best Practices -->
 	<rule ref="category/java/bestpractices.xml"/>
 
@@ -50,6 +47,7 @@
 	<rule ref="category/java/design.xml">
 		<exclude name="LoosePackageCoupling"/>
 		<exclude name="ImmutableField"/>
+		<exclude name="LawOfDemeter"/>
 	</rule>
 
 	<!-- Documentation -->

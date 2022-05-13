@@ -4,31 +4,58 @@
 
 package org.recordrobotics.munchkin;
 
-import org.recordrobotics.munchkin.commands.ExampleCommand;
-import org.recordrobotics.munchkin.control.IControlInput;
-import org.recordrobotics.munchkin.control.LegacyControl;
-import org.recordrobotics.munchkin.subsystems.ExampleSubsystem;
+import org.recordrobotics.munchkin.control.*;
+import org.recordrobotics.munchkin.subsystems.*;
+import org.recordrobotics.munchkin.commands.manual.*;
+
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.CommandScheduler;
 
 /**
  * Contains subsystems, control and command scheduling
  */
 public class RobotContainer {
-	// Subsystems
-	private ExampleSubsystem _exampleSubsystem = new ExampleSubsystem();
-
-	// Control scheme
-	@SuppressWarnings({"unused", "PMD.SingularField"})
+	// Control Scheme
 	private IControlInput _controlInput;
 
-	// Autonomous command
-	private ExampleCommand _autoCommand = new ExampleCommand(_exampleSubsystem);
+	// Subsystems
+	private Acquisition _acquisition;
+	private Climbers _climbers;
+	private Flywheel _flywheel;
+	private Rotator _rotator;
+	private Drive _drive;
 
 	public RobotContainer() {
 		_controlInput = new LegacyControl(RobotMap.Control.LEGACY_GAMEPAD);
+		// _controlInput = new DoubleControl(RobotMap.Control.DOUBLE_GAMEPAD_1,
+			// RobotMap.Control.DOUBLE_GAMEPAD_2);
+		_acquisition = new Acquisition();
+		_climbers = new Climbers();
+		_flywheel = new Flywheel();
+		_rotator = new Rotator();
+		_drive = new Drive();
+	}
+
+	/**
+	 * Create teleop commands
+	 */
+	public void teleopInit() {
+		CommandScheduler.getInstance().schedule(true,
+			new ManualAcquisition(_acquisition, _controlInput),
+			new ManualClimbers(_climbers, _controlInput),
+			new ManualFlywheel(_flywheel, _controlInput),
+			new ManualRotator(_rotator, _controlInput),
+			new ManualDrive(_drive, _controlInput));
+	}
+
+	/**
+	 * Clear commands
+	 */
+	public void resetCommands() {
+		CommandScheduler.getInstance().cancelAll();
 	}
 
 	public Command getAutonomousCommand() {
-		return _autoCommand;
+		return null;
 	}
 }
