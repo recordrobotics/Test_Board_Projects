@@ -19,21 +19,14 @@ public class RobotContainer {
 	private IControlInput _controlInput;
 
 	// Subsystems
-	private Acquisition _acquisition;
-	private Climbers _climbers;
-	private Flywheel _flywheel;
-	private Rotator _rotator;
-	private Drive _drive;
+	private BaseMotor _baseMotor;
+
 
 	public RobotContainer() {
 		_controlInput = new LegacyControl(RobotMap.Control.LEGACY_GAMEPAD);
 		// _controlInput = new DoubleControl(RobotMap.Control.DOUBLE_GAMEPAD_1,
 			// RobotMap.Control.DOUBLE_GAMEPAD_2);
-		_acquisition = new Acquisition();
-		_climbers = new Climbers();
-		_flywheel = new Flywheel();
-		_rotator = new Rotator();
-		_drive = new Drive();
+		_baseMotor = new BaseMotor();
 	}
 
 	/**
@@ -41,11 +34,7 @@ public class RobotContainer {
 	 */
 	public void teleopInit() {
 		CommandScheduler.getInstance().schedule(true,
-			new ManualAcquisition(_acquisition, _controlInput),
-			new ManualClimbers(_climbers, _controlInput),
-			new ManualFlywheel(_flywheel, _controlInput),
-			new ManualRotator(_rotator, _controlInput),
-			new ManualDrive(_drive, _controlInput));
+			new ManualBaseMotor(_baseMotor, _controlInput));
 	}
 
 	/**
