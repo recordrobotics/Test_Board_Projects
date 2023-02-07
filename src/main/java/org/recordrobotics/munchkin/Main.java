@@ -4,13 +4,25 @@
 
 package org.recordrobotics.munchkin;
 
+import java.io.IOException;
+
 import edu.wpi.first.wpilibj.RobotBase;
 
+// This will suppress all the PMD warnings in this class
+@SuppressWarnings("PMD")
 public final class Main {
 
 	private Main() {}
 
 	public static void main(String... args) {
-		RobotBase.startRobot(Robot::new);
+		RobotBase.startRobot(() -> {
+			try {
+				return new Robot();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return null;
+		});
 	}
 }

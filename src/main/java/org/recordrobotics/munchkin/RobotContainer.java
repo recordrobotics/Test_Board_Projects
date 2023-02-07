@@ -6,7 +6,7 @@ package org.recordrobotics.munchkin;
 
 import org.recordrobotics.munchkin.control.*;
 import org.recordrobotics.munchkin.subsystems.*;
-import org.recordrobotics.munchkin.commands.manual.*;
+//import org.recordrobotics.munchkin.commands.manual.*;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 /**
  * Contains subsystems, control and command scheduling
  */
+@SuppressWarnings("PMD")
 public class RobotContainer {
 	// Control Scheme
 	private IControlInput _controlInput;
@@ -33,8 +34,8 @@ public class RobotContainer {
 	 * Create teleop commands
 	 */
 	public void teleopInit() {
-		CommandScheduler.getInstance().schedule(true,
-			new ManualBaseMotor(_baseMotor, _controlInput));
+		//CommandScheduler.getInstance().schedule(true,
+		//	new ManualBaseMotor(_baseMotor, _controlInput));
 	}
 
 	/**
