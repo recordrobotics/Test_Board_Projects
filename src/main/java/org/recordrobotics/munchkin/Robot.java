@@ -151,11 +151,14 @@ public class Robot extends TimedRobot {
 
 		var result = camera.getLatestResult();
 
+		//EstimatedRobotPose pose = getEstimatedGlobalPose([0,0]);
+		
 		System.out.println(result.getTargets());
 		System.out.println(camera.toString());
 		camera.takeInputSnapshot();
 		//java.util.concurrent.TimeUnit.SECONDS.sleep(15);
 
+		/**
 
 		boolean hasTargets = result.hasTargets();
 		System.out.println(hasTargets);
@@ -179,6 +182,8 @@ public class Robot extends TimedRobot {
 			//System.out.println(targetID);
 			//System.out.println(poseAmbiguity);
 		}
+
+		*/
 
 
 	}
