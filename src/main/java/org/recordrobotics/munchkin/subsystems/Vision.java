@@ -1,6 +1,7 @@
 package org.recordrobotics.munchkin.subsystems;
 
 import org.photonvision.PhotonCamera;
+import org.photonvision.PhotonUtils;
 import org.photonvision.targeting.PhotonTrackedTarget;
 
 import edu.wpi.first.math.estimator.DifferentialDrivePoseEstimator;
@@ -8,6 +9,7 @@ import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation3d;
 import edu.wpi.first.math.geometry.Transform3d;
 import edu.wpi.first.math.geometry.Translation3d;
+import edu.wpi.first.math.util.Units;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Vision extends SubsystemBase{
@@ -26,6 +28,8 @@ public class Vision extends SubsystemBase{
 		{1.02743, 1.071626, 0.462788, 0}}; //tag 8
 	double[] fieldDimensions = {16.54175, 8.0137};//x, y. The origin is at the bottom corner of the blue alliance wall as seen on the field drawings. 0 radians is parallel to the positive x-axis.
 
+	
+
 	public static double[] getVisionPoseEstimate(PhotonCamera camera, Transform3d robotToCam){
 		var result = camera.getLatestResult();
 		boolean hasTargets = result.hasTargets();
@@ -34,7 +38,8 @@ public class Vision extends SubsystemBase{
 			int targetID = target.getFiducialId();
 			Transform3d bestRobotToTarget = target.getBestCameraToTarget().plus(robotToCam.inverse());
 			double yaw = target.getYaw();
-			double distance = Math.sqrt((bestRobotToTarget.getX()*bestRobotToTarget.getX()) + (bestRobotToTarget.getY()*bestRobotToTarget.getY()));
+			double distance = PhotonUtils.calculateDistanceToTargetMeters(robotToCam.getZ(), tags[targetID][2], robotToCam.getRotation().getY(), Units.degreesToRadians(result.getBestTarget().getPitch()));
+			//double distance = Math.sqrt((bestRobotToTarget.getX()*bestRobotToTarget.getX()) + (bestRobotToTarget.getY()*bestRobotToTarget.getY()));
 			double x_transform = Math.cos(yaw)*distance;
 			double y_transform = Math.sin(yaw)*distance;
 			double global_x = tags[targetID][0] + x_transform;
