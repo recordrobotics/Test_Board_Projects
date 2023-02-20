@@ -37,10 +37,16 @@ public class Vision extends SubsystemBase{
 			double distance = Math.sqrt((bestRobotToTarget.getX()*bestRobotToTarget.getX()) + (bestRobotToTarget.getY()*bestRobotToTarget.getY()));
 			double x_transform = Math.cos(yaw)*distance;
 			double y_transform = Math.sin(yaw)*distance;
-			double global_x = tags[targetID][1] + x_transform;
-			double global_y = tags[targetID][2] + y_transform;
-			double global_theta = tags[targetID][4] + Math.PI + bestRobotToTarget.getRotation().toRotation2d().getRadians(); //Pi is added because if the camera sees the tag, it is necessarily looking in the direction opposite the tag's orientation.
+			double global_x = tags[targetID][0] + x_transform;
+			double global_y = tags[targetID][1] + y_transform;
+			double global_theta = tags[targetID][3] + Math.PI + bestRobotToTarget.getRotation().toRotation2d().getRadians(); //Pi is added because if the camera sees the tag, it is necessarily looking in the direction opposite the tag's orientation.
 			double[] globalPose = {global_x, global_y, global_theta};
+			System.out.println("distance " + distance);
+			System.out.println("yaw " + yaw);
+			System.out.println("x " + global_x);
+			System.out.println("y " + global_y);
+			System.out.println("tag orientation " + tags[targetID][3]);
+			System.out.println("robot rotation " + bestRobotToTarget.getRotation().toRotation2d().getRadians());
 			return globalPose;
 		} else
 		return null;
