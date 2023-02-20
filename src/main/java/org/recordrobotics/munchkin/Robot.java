@@ -74,12 +74,14 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void autonomousPeriodic() {
-		System.out.println("Autonomous periodic");
-		double[] globalPose = org.recordrobotics.munchkin.subsystems.Vision.getVisionPoseEstimate(vision.camera, vision.robotToCam);
-		System.out.println(globalPose[1]);
-		System.out.println(globalPose[2]);
-		System.out.println(globalPose[3]);
-		System.out.println(globalPose[4]);
+		//System.out.println("Autonomous periodic");
+		if (vision.checkForTarget(vision.camera, vision.robotToCam)){
+			double[] globalPose = org.recordrobotics.munchkin.subsystems.Vision.getVisionPoseEstimate(vision.camera, vision.robotToCam);
+			System.out.println(globalPose[0]);
+			System.out.println(globalPose[1]);
+			System.out.println(globalPose[2]);
+			System.out.println(globalPose[3]);
+		}
 		}
 
 	/**
