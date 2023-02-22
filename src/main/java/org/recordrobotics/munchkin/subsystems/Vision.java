@@ -3,6 +3,7 @@ package org.recordrobotics.munchkin.subsystems;
 import org.photonvision.PhotonCamera;
 import org.photonvision.PhotonUtils;
 import org.photonvision.targeting.PhotonTrackedTarget;
+import org.photonvision.targeting.TargetCorner;
 
 import edu.wpi.first.math.estimator.DifferentialDrivePoseEstimator;
 import edu.wpi.first.math.geometry.Pose2d;
@@ -28,7 +29,16 @@ public class Vision extends SubsystemBase{
 		{1.02743, 1.071626, 0.462788, 0}}; //tag 8
 	double[] fieldDimensions = {16.54175, 8.0137};//x, y. The origin is at the bottom corner of the blue alliance wall as seen on the field drawings. 0 radians is parallel to the positive x-axis.
 
-	
+	public static double getTagAngle(PhotonTrackedTarget target){
+		double bottomLeftY = target.getDetectedCorners().get(0).y;
+		double topRightX = target.getDetectedCorners().get(2).x;
+		double topLeftX = target.getDetectedCorners().get(3).x;
+		double topLeftY = target.getDetectedCorners().get(3).y;
+		double height = topLeftY - bottomLeftY;
+		double width = topLeftX - topRightX;
+		double angle = Math.asin(width/height);
+		return angle;
+	}
 
 	public static double[] getVisionPoseEstimate(PhotonCamera camera, Transform3d robotToCam){
 		var result = camera.getLatestResult();
@@ -38,20 +48,14 @@ public class Vision extends SubsystemBase{
 			int targetID = target.getFiducialId();
 			Transform3d bestRobotToTarget = target.getBestCameraToTarget().plus(robotToCam.inverse());
 			double yaw = target.getYaw();
-			double distance = PhotonUtils.calculateDistanceToTargetMeters(robotToCam.getZ(), tags[targetID][2], robotToCam.getRotation().getY(), Units.degreesToRadians(result.getBestTarget().getPitch()));
-			//double distance = Math.sqrt((bestRobotToTarget.getX()*bestRobotToTarget.getX()) + (bestRobotToTarget.getY()*bestRobotToTarget.getY()));
-			double x_transform = Math.cos(yaw)*distance;
-			double y_transform = Math.sin(yaw)*distance;
+			double tagAngle = getTagAngle(target);
+			double distance = Math.sqrt((bestRobotToTarget.getX()*bestRobotToTarget.getX()) + (bestRobotToTarget.getY()*bestRobotToTarget.getY()));
+			double x_transform = Math.cos(tagAngle)*distance;
+			double y_transform = Math.sin(tagAngle)*distance;
 			double global_x = tags[targetID][0] + x_transform;
 			double global_y = tags[targetID][1] + y_transform;
 			double global_theta = tags[targetID][3] + Math.PI + bestRobotToTarget.getRotation().toRotation2d().getRadians(); //Pi is added because if the camera sees the tag, it is necessarily looking in the direction opposite the tag's orientation.
 			double[] globalPose = {global_x, global_y, global_theta};
-			System.out.println("distance " + distance);
-			System.out.println("yaw " + yaw);
-			System.out.println("x " + global_x);
-			System.out.println("y " + global_y);
-			System.out.println("tag orientation " + tags[targetID][3]);
-			System.out.println("robot rotation " + bestRobotToTarget.getRotation().toRotation2d().getRadians());
 			return globalPose;
 		} else
 		return null;
